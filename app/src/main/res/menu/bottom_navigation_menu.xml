@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/trendingMemesFragment"
+        android:enabled="true"
+        android:icon="@drawable/trending_selector"
+        android:title="Trending" />
+
+    <item
+        android:id="@+id/memesFragment"
+        android:enabled="true"
+        android:icon="@drawable/library_selector"
+        android:title="Library" />
+
+    <item
+        android:id="@+id/downloadedTemplatesFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_heart_checked"
+        android:title="Favorites" />
+
+    <item
+        android:id="@+id/createdMemesFragment"
+        android:enabled="true"
+        android:icon="@drawable/saved_selector"
+        android:title="Saved" />
+
+</menu>

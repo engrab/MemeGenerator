@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#5B5B5B"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutEdit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:padding="@dimen/_3sdp"
+                android:tint="@color/white"
+                android:src="@drawable/ic_edit" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:gravity="center_vertical"
+                android:text="Edit Template"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutShare"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:padding="@dimen/_3sdp"
+                android:tint="@color/white"
+                android:src="@drawable/ic_share_2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:gravity="center_vertical"
+                android:text="Share Template"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDeleteTemplate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:padding="@dimen/_1sdp"
+                android:tint="@color/white"
+                android:src="@drawable/ic_bin" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:gravity="center_vertical"
+                android:text="Remove from favorites"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
