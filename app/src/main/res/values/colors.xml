@@ -36,4 +36,8 @@
 
     <color name="colorItemSelected">#FFFFFF</color>
     <color name="colorItemDeselected">#65625E</color>
+
+    <color name="colorWhite">#ffff</color>
+    <color name="colorBlack">#121111</color>
+    <color name="colorGrey">#676060</color>
 </resources>

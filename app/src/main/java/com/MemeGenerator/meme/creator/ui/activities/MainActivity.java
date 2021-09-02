@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAdView = new AdView(this, "570681927643832_570682054310486", AdSize.BANNER_HEIGHT_50);
 
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
+        LinearLayout adContainer = findViewById(R.id.banner_container);
 
         adContainer.addView(mAdView);
 
@@ -181,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        ((Window) Objects
-                .requireNonNull(this.dialog.getWindow()))
+        Objects
+                .requireNonNull(this.dialog.getWindow())
                 .setLayout((int) (((double) displayMetrics.widthPixels) * 0.9d), -2);
 
         Button btnCancel = dialog.findViewById(R.id.btnCancel);

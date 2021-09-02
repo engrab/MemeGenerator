@@ -13,14 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rvConstraintTools"
-       android:layout_below="@id/linearLayout"
+        android:layout_below="@id/linearLayout"
         app:photo_src="@drawable/blank_image" />
 
     <TextView
         android:id="@+id/textViewDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
+        android:gravity="center"
         android:fontFamily="@font/roboto_medium"
         android:text="Pick an image to use it as meme"
         android:textColor="@color/black"

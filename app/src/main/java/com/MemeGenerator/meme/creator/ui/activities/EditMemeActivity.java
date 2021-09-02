@@ -2,6 +2,7 @@ package com.MemeGenerator.meme.creator.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.MemeGenerator.meme.creator.utils.SharedPrefs;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -66,6 +68,8 @@ public class EditMemeActivity extends BaseActivity implements
     private static final String TAG = EditMemeActivity.class.getSimpleName();
     private static final int CAMERA_REQUEST = 52;
     private static final int PICK_REQUEST = 53;
+    private static final String KEY_SHAPE_DIALOGE = "shape_dialoge";
+    private static final String KEY_ERASE_DIALOGE = "erase_dialoge";
     PhotoEditor mPhotoEditor;
 
     private PhotoEditorView mPhotoEditorView;
@@ -91,6 +95,15 @@ public class EditMemeActivity extends BaseActivity implements
         setContentView(R.layout.activity_edit_meme);
         bannerAdsFacebook();
         textViewDescription = findViewById(R.id.textViewDescription);
+        textViewDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_REQUEST);
+            }
+        });
         AudienceNetworkAds.initialize(this);
         initViews();
         mWonderFont = Typeface.createFromAsset(getAssets(),
@@ -141,6 +154,48 @@ public class EditMemeActivity extends BaseActivity implements
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         mPhotoEditorView.getSource().setImageBitmap(bitmap);
     }
+
+    public void shapeDialoge(){
+
+        AlertDialog alertDialog = new AlertDialog.Builder(EditMemeActivity.this).create();
+        alertDialog.setTitle("Shape Tool");
+        alertDialog.setMessage("Create line, rectangle, and oval shape");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        mPhotoEditor.setBrushDrawingMode(true);
+                        mShapeBuilder = new ShapeBuilder();
+                        mPhotoEditor.setShape(mShapeBuilder);
+                        mTxtCurrentTool.setText(R.string.label_shape);
+                        showBottomSheetDialogFragment(mShapeBSFragment);
+                    }
+                });
+        alertDialog.show();
+
+        SharedPrefs.putBoolean(this, KEY_SHAPE_DIALOGE, false);
+
+    }
+    public void eraseDialoge(){
+
+        AlertDialog alertDialog = new AlertDialog.Builder(EditMemeActivity.this).create();
+        alertDialog.setTitle("Eraser Tool");
+        alertDialog.setMessage("Erase to background or transparency using a brush");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        mPhotoEditor.brushEraser();
+                        mTxtCurrentTool.setText(R.string.label_eraser_mode);
+                    }
+                });
+        alertDialog.show();
+
+        SharedPrefs.putBoolean(this, KEY_ERASE_DIALOGE, false);
+
+    }
+
     private void interstitalAdsFacebook() {
         mInterstitialAd = new InterstitialAd(this, getString(R.string.ad_insters));
 // Create listeners for the Interstitial Ad
@@ -237,6 +292,7 @@ public class EditMemeActivity extends BaseActivity implements
         }
         super.onDestroy();
     }
+
     private void loadImageFromUrl() {
         String url = getIntent().getStringExtra("url");
         Glide.with(this)
@@ -310,6 +366,7 @@ public class EditMemeActivity extends BaseActivity implements
 
         imgShare = findViewById(R.id.imgShare);
         imgShare.setOnClickListener(this);
+
 
     }
 
@@ -462,6 +519,7 @@ public class EditMemeActivity extends BaseActivity implements
                     mPhotoEditor.clearAllViews();
                     Bitmap photo = (Bitmap) data.getExtras().get("data");
                     mPhotoEditorView.getSource().setImageBitmap(photo);
+                    textViewDescription.setVisibility(View.GONE);
                     break;
                 case PICK_REQUEST:
                     try {
@@ -571,16 +629,29 @@ public class EditMemeActivity extends BaseActivity implements
     }
 
     private void enableShapeEditing() {
-        mPhotoEditor.setBrushDrawingMode(true);
-        mShapeBuilder = new ShapeBuilder();
-        mPhotoEditor.setShape(mShapeBuilder);
-        mTxtCurrentTool.setText(R.string.label_shape);
-        showBottomSheetDialogFragment(mShapeBSFragment);
+
+        if (SharedPrefs.getBoolean(this, KEY_SHAPE_DIALOGE, true)){
+            shapeDialoge();
+        }
+        else {
+
+            mPhotoEditor.setBrushDrawingMode(true);
+            mShapeBuilder = new ShapeBuilder();
+            mPhotoEditor.setShape(mShapeBuilder);
+            mTxtCurrentTool.setText(R.string.label_shape);
+            showBottomSheetDialogFragment(mShapeBSFragment);
+        }
+
     }
 
     private void enableEraserEditing() {
-        mPhotoEditor.brushEraser();
-        mTxtCurrentTool.setText(R.string.label_eraser_mode);
+        if (SharedPrefs.getBoolean(this, KEY_ERASE_DIALOGE, true)){
+            eraseDialoge();
+        }else {
+
+            mPhotoEditor.brushEraser();
+            mTxtCurrentTool.setText(R.string.label_eraser_mode);
+        }
     }
 
     private void enableEmojiEditing() {

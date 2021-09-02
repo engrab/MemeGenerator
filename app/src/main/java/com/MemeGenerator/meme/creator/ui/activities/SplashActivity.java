@@ -3,8 +3,10 @@ package com.MemeGenerator.meme.creator.ui.activities;
 import static com.MemeGenerator.meme.creator.utils.Constants.KEY_IS_FIRST_TIME;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,9 +26,14 @@ public class SplashActivity extends AppCompatActivity {
         requestWindowFeature(1);
         getWindow().setFlags(1024, 1024);
         setContentView(R.layout.activity_splash);
+
+        TextView tv = (TextView) findViewById(R.id.tv_app_name);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "KaushanScript-Regular.otf");
+        tv.setTypeface(face);
+
         AudienceNetworkAds.initialize(getApplicationContext());
-        isFirstTime = SharedPrefs
-                .getBoolean(this, KEY_IS_FIRST_TIME, true);
+        isFirstTime = SharedPrefs.getBoolean(this, KEY_IS_FIRST_TIME, true);
 
         if (isFirstTime)
             openOnBoardingActivity();
@@ -38,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void openOnBoardingActivity() {
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
+            Intent intent = new Intent(SplashActivity.this, SlideActivity.class);
             startActivity(intent);
             finish();
         }, SPLASH_DURATION);

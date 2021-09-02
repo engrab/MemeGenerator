@@ -7,25 +7,41 @@
         <entry key="app/src/main/res/drawable/bottom_bar_bg.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/bottom_nav_color.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.36615384615384616" />
+        <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.36615384615384616" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.36615384615384616" />
+        <entry key="app/src/main/res/drawable/ic_next.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/ic_save.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/ic_share_3.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/ic_star.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/ic_trend_active.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/ic_trend_inactive.xml" value="0.36615384615384616" />
+        <entry key="app/src/main/res/drawable/seleted.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/trending_selector.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/font/roboto_medium.xml" value="0.38" />
         <entry key="app/src/main/res/layout/activity_edit_meme.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/activity_slide.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/add_text_dialog.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/color_picker_item_list.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_bottom_properties_dialog.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_bottom_shapes_dialog.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_bottom_sticker_emoji_dialog.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_memes.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_storage_permissions.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_trending_memes.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet_favorite_items.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet_saved_items.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/layout_exit_dialog.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/layout_gallery_item.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/layout_meme_item.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/row_emoji.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/slide_screen.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.175" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.175" />

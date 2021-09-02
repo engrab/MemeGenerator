@@ -23,9 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.MemeGenerator.meme.creator.R;
 
-/**
- * Created by Burhanuddin Rashid on 1/16/2018.
- */
 
 public class TextEditorDialogFragment extends DialogFragment {
 
@@ -80,6 +77,7 @@ public class TextEditorDialogFragment extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAddTextEditText = view.findViewById(R.id.add_text_edit_text);
+        mAddTextEditText.requestFocus();
         mInputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mAddTextDoneTextView = view.findViewById(R.id.add_text_done_tv);
 
