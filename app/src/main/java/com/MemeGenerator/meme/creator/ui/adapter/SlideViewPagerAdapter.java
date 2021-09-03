@@ -17,6 +17,8 @@ import com.MemeGenerator.meme.creator.R;
 import com.MemeGenerator.meme.creator.ui.activities.MainActivity;
 import com.MemeGenerator.meme.creator.ui.activities.OnBoardingActivity;
 import com.MemeGenerator.meme.creator.ui.activities.SlideActivity;
+import com.MemeGenerator.meme.creator.utils.FbAdsUtils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class SlideViewPagerAdapter extends PagerAdapter {
 
@@ -43,7 +45,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.slide_screen, container, false);
 
 
-        ImageView logo = view.findViewById(R.id.logo);
+        RoundedImageView logo = view.findViewById(R.id.imageView1);
 
         ImageView ind1 = view.findViewById(R.id.ind1);
         ImageView ind2 = view.findViewById(R.id.ind2);
@@ -61,6 +63,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FbAdsUtils.ShowInterstitial(ctx);
                 Intent intent = new Intent(ctx, OnBoardingActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(intent);
@@ -82,7 +85,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
         switch (position) {
             case 0:
-                logo.setBackgroundResource(R.drawable.tutorial1);
+                logo.setImageDrawable(ctx.getResources().getDrawable(R.drawable.tutorial1));
                 ind1.setImageResource(R.drawable.seleted);
                 ind2.setImageResource(R.drawable.unselected);
                 ind3.setImageResource(R.drawable.unselected);
@@ -94,7 +97,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 next.setVisibility(View.VISIBLE);
                 break;
             case 1:
-                logo.setBackgroundResource(R.drawable.tutorial2);
+                logo.setImageDrawable(ctx.getResources().getDrawable(R.drawable.tutorial2));
                 ind1.setImageResource(R.drawable.unselected);
                 ind2.setImageResource(R.drawable.seleted);
                 ind3.setImageResource(R.drawable.unselected);
@@ -105,7 +108,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 next.setVisibility(View.VISIBLE);
                 break;
             case 2:
-                logo.setBackgroundResource(R.drawable.tutorial3);
+                logo.setImageDrawable(ctx.getResources().getDrawable(R.drawable.tutorial3));
                 ind1.setImageResource(R.drawable.unselected);
                 ind2.setImageResource(R.drawable.unselected);
                 ind3.setImageResource(R.drawable.seleted);
@@ -116,7 +119,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 next.setVisibility(View.VISIBLE);
                 break;
             case 3:
-                logo.setBackgroundResource(R.drawable.tutorial4);
+                logo.setImageDrawable(ctx.getResources().getDrawable(R.drawable.tutorial4));
                 ind1.setImageResource(R.drawable.unselected);
                 ind2.setImageResource(R.drawable.unselected);
                 ind3.setImageResource(R.drawable.unselected);

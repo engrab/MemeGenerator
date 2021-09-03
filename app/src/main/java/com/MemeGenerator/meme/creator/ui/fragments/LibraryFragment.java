@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.MemeGenerator.meme.creator.databinding.FragmentMemesBinding;
 import com.MemeGenerator.meme.creator.ui.activities.EditMemeActivity;
+import com.MemeGenerator.meme.creator.utils.FbAdsUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -50,7 +51,6 @@ public class LibraryFragment extends Fragment {
     private ArrayList<String> memes = new ArrayList<>();
     private MemesAdapter adapter;
     private BottomSheetDialog bottomSheetDialog;
-    private InterstitialAd mInterstitialAd;
     private FavoritesViewModel mFavoritesViewModel;
 
     public LibraryFragment() {
@@ -92,7 +92,13 @@ public class LibraryFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        interstitalAdsFacebook();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
     private void getMemes(DataSnapshot snapshot) {
@@ -116,7 +122,6 @@ public class LibraryFragment extends Fragment {
 
         adapter.setOnMemeItemClickListener((position, url, view) -> {
             displayBottomSheet(url);
-            interstitalAdsFacebook();
         });
     }
 
@@ -129,7 +134,7 @@ public class LibraryFragment extends Fragment {
 
         bottomSheetView.findViewById(R.id.linearLayoutEdit).setOnClickListener(v -> {
             openCreateMemeActivity(url);
-            interstitalAdsFacebook();
+            FbAdsUtils.ShowInterstitial(requireActivity());
         });
 
         bottomSheetView.findViewById(R.id.linearLayoutSaveTemplate).setOnClickListener(v -> {
@@ -193,88 +198,4 @@ public class LibraryFragment extends Fragment {
         }
     }
 
-    private void interstitalAdsFacebook() {
-        mInterstitialAd = new InterstitialAd(getContext(), getString(R.string.ad_insters));
-// Create listeners for the Interstitial Ad
-        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                // Interstitial ad displayed callback
-                Log.e(TAG, "Interstitial ad displayed.");
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Interstitial dismissed callback
-                Log.e(TAG, "Interstitial ad dismissed.");
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Ad error callback
-                Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Interstitial ad is loaded and ready to be displayed
-                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                // Show the ad
-                showAdWithDelay();
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Ad clicked callback
-                Log.d(TAG, "Interstitial ad clicked!");
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-                // Ad impression logged callback
-                Log.d(TAG, "Interstitial ad impression logged!");
-            }
-        };
-
-        // For auto play video ads, it's recommended to load the ad
-        // at least 30 seconds before it is shown
-        mInterstitialAd.loadAd(
-                mInterstitialAd.buildLoadAdConfig()
-                        .withAdListener(interstitialAdListener)
-                        .build());
-    }
-
-    private void showAdWithDelay() {
-        /**
-         * Here is an example for displaying the ad with delay;
-         * Please do not copy the Handler into your project
-         */
-        // Handler handler = new Handler();
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                // Check if interstitialAd has been loaded successfully
-                if (mInterstitialAd == null || !mInterstitialAd.isAdLoaded()) {
-                    return;
-                }
-                // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
-                if (mInterstitialAd.isAdInvalidated()) {
-                    return;
-                }
-                // Show the ad
-                mInterstitialAd.show();
-            }
-        }, 1000 * 3); // Show the ad after 3 second
-    }
-
-
-
-
-    @Override
-    public void onDestroy() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd.destroy();
-        }
-
-        super.onDestroy();
-    }
 }

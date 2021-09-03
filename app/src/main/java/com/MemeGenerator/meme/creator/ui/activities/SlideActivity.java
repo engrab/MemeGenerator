@@ -10,8 +10,10 @@ import android.widget.LinearLayout;
 
 import com.MemeGenerator.meme.creator.R;
 import com.MemeGenerator.meme.creator.ui.adapter.SlideViewPagerAdapter;
+import com.MemeGenerator.meme.creator.utils.FbAdsUtils;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.ads.AudienceNetworkAds;
 
 public class SlideActivity extends AppCompatActivity {
 
@@ -23,7 +25,11 @@ public class SlideActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide);
-        bannerAdsFacebook();
+
+        AudienceNetworkAds.initialize(this);
+        FbAdsUtils.LoadInterstitial(this);
+        mAdView = FbAdsUtils.ShowBanner(this, findViewById(R.id.banner_container));
+
         viewPager = findViewById(R.id.viewpager);
         adapter = new SlideViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
@@ -39,15 +45,12 @@ public class SlideActivity extends AppCompatActivity {
 
     }
 
-    private void bannerAdsFacebook() {
-
-        mAdView = new AdView(this, getString(R.string.ad_banner), AdSize.BANNER_HEIGHT_50);
-
-        LinearLayout adContainer = findViewById(R.id.banner_container);
-
-        adContainer.addView(mAdView);
-
-        mAdView.loadAd();
+    @Override
+    protected void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 
     private boolean isOpenAlread() {

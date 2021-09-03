@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.MemeGenerator.meme.creator.utils.FbAdsUtils;
 import com.MemeGenerator.meme.creator.utils.SharedPrefs;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -85,15 +85,13 @@ public class EditMemeActivity extends BaseActivity implements
     private TextView textViewDescription;
     private ProgressDialog progressDialog;
     AdView mAdView;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: called");
-//        makeFullScreen();
         setContentView(R.layout.activity_edit_meme);
-        bannerAdsFacebook();
+
         textViewDescription = findViewById(R.id.textViewDescription);
         textViewDescription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +102,11 @@ public class EditMemeActivity extends BaseActivity implements
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_REQUEST);
             }
         });
+
         AudienceNetworkAds.initialize(this);
+        FbAdsUtils.LoadInterstitial(this);
+        mAdView = FbAdsUtils.ShowBanner(this, findViewById(R.id.banner_container));
+
         initViews();
         mWonderFont = Typeface.createFromAsset(getAssets(),
                 "beyond_wonderland.ttf");
@@ -146,7 +148,12 @@ public class EditMemeActivity extends BaseActivity implements
             }
         }
 
-        interstitalAdsFacebook();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     private void loadImageFromPhoto() {
@@ -196,97 +203,8 @@ public class EditMemeActivity extends BaseActivity implements
 
     }
 
-    private void interstitalAdsFacebook() {
-        mInterstitialAd = new InterstitialAd(this, getString(R.string.ad_insters));
-// Create listeners for the Interstitial Ad
-        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                // Interstitial ad displayed callback
-                Log.e(TAG, "Interstitial ad displayed.");
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Interstitial dismissed callback
-                Log.e(TAG, "Interstitial ad dismissed.");
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Ad error callback
-                Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Interstitial ad is loaded and ready to be displayed
-                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                // Show the ad
-                showAdWithDelay();
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Ad clicked callback
-                Log.d(TAG, "Interstitial ad clicked!");
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-                // Ad impression logged callback
-                Log.d(TAG, "Interstitial ad impression logged!");
-            }
-        };
-
-        // For auto play video ads, it's recommended to load the ad
-        // at least 30 seconds before it is shown
-        mInterstitialAd.loadAd(
-                mInterstitialAd.buildLoadAdConfig()
-                        .withAdListener(interstitialAdListener)
-                        .build());
-    }
-
-    private void showAdWithDelay() {
-        /**
-         * Here is an example for displaying the ad with delay;
-         * Please do not copy the Handler into your project
-         */
-        // Handler handler = new Handler();
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                // Check if interstitialAd has been loaded successfully
-                if (mInterstitialAd == null || !mInterstitialAd.isAdLoaded()) {
-                    return;
-                }
-                // Check if ad is already expired or invalidated, and do not show ad if that is the case. You will not get paid to show an invalidated ad.
-                if (mInterstitialAd.isAdInvalidated()) {
-                    return;
-                }
-                // Show the ad
-                mInterstitialAd.show();
-            }
-        }, 1000 * 3); // Show the ad after 3 second
-    }
-
-
-    private void bannerAdsFacebook() {
-
-        mAdView = new AdView(this, getString(R.string.ad_banner), AdSize.BANNER_HEIGHT_50);
-
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
-
-        adContainer.addView(mAdView);
-
-        mAdView.loadAd();
-    }
-
-
     @Override
     protected void onDestroy() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd.destroy();
-        }
         if (mAdView != null) {
             mAdView.destroy();
         }
@@ -442,6 +360,7 @@ public class EditMemeActivity extends BaseActivity implements
     }
 
     private void saveInPrivate() {
+        FbAdsUtils.ShowInterstitial(EditMemeActivity.this);
         showProgressDialog();
         mPhotoEditor.saveAsBitmap(new OnSaveBitmap() {
             @Override
@@ -451,7 +370,7 @@ public class EditMemeActivity extends BaseActivity implements
                 hideProgressDialog();
                 mPhotoEditorView.getSource().setImageBitmap(saveBitmap);
                 Toast.makeText(EditMemeActivity.this, "Saved Successfully!", Toast.LENGTH_SHORT).show();
-                interstitalAdsFacebook();
+                FbAdsUtils.ShowInterstitial(EditMemeActivity.this);
             }
 
             @Override
