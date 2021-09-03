@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_star.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/ic_trend_active.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/ic_trend_inactive.xml" value="0.36615384615384616" />
+        <entry key="app/src/main/res/drawable/oval.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/seleted.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/trending_selector.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/unselected.xml" value="0.1984375" />

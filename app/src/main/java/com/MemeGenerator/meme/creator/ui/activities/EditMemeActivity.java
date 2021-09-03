@@ -91,7 +91,7 @@ public class EditMemeActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: called");
-        makeFullScreen();
+//        makeFullScreen();
         setContentView(R.layout.activity_edit_meme);
         bannerAdsFacebook();
         textViewDescription = findViewById(R.id.textViewDescription);

@@ -95,6 +95,7 @@ dependencies {
     // animation
     implementation 'com.airbnb.android:lottie:3.5.0'
 
+    implementation "androidx.cardview:cardview:1.0.0"
 
 }
 repositories {
