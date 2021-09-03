@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         binding.extendedFab.setOnClickListener(v -> {
-           FbAdsUtils.ShowInterstitial(MainActivity.this);
             openCreateMemeActivity();
+            FbAdsUtils.ShowInterstitial(MainActivity.this);
         });
         binding.btnShare.setOnClickListener(v -> shareApp());
         binding.btnRate.setOnClickListener(v -> rateUs());

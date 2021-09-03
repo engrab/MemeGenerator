@@ -21,8 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:gravity="center"
         android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
         android:text="Pick an image to use it as meme"
         android:textColor="@color/black"
         android:textSize="@dimen/_16ssp"
@@ -36,37 +36,14 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imgUndo"
-                android:layout_width="@dimen/top_tool_icon_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:padding="8dp"
-                android:src="@drawable/ic_undo" />
-
-            <ImageView
-                android:id="@+id/imgRedo"
-                android:layout_width="@dimen/top_tool_icon_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:padding="8dp"
-                android:src="@drawable/ic_redo" />
-
-        </LinearLayout>
-
-
         <ImageView
             android:id="@+id/imgGallery"
             android:layout_width="@dimen/top_tool_icon_width"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_margin="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/wdit_background"
             android:padding="8dp"
             android:src="@drawable/ic_gallery" />
 
@@ -74,28 +51,72 @@
             android:id="@+id/imgCamera"
             android:layout_width="@dimen/top_tool_icon_width"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:layout_toEndOf="@id/imgGallery"
+            android:background="@drawable/wdit_background"
             android:padding="8dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_camera" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgUndo"
+                android:layout_width="@dimen/top_tool_icon_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/wdit_background"
+                android:padding="8dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_undo" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_toEndOf="@id/imgUndo"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imgRedo"
+                android:layout_width="@dimen/top_tool_icon_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/tv"
+                android:layout_centerVertical="true"
+                android:background="@drawable/wdit_background"
+                android:padding="8dp"
+                android:src="@drawable/ic_redo" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/imgShare"
             android:layout_width="@dimen/top_tool_icon_width"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/wdit_background"
             android:padding="8dp"
             android:src="@drawable/ic_share" />
 
     </RelativeLayout>
 
     <LinearLayout
+        android:background="@drawable/layout_background"
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/banner_container"
-        android:layout_margin="16dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -132,8 +153,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/ll_bottom"
         android:orientation="horizontal"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
+        android:background="@drawable/layout_background"
+        android:layout_margin="5dp"
         android:weightSum="4">
 
         <androidx.constraintlayout.widget.ConstraintLayout

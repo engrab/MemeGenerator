@@ -107,12 +107,12 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/primary"
             android:contentDescription="@string/custom_image"
             android:text="@string/custom_image"
             android:textColor="@color/white"
-            android:backgroundTint="@color/primary"
-            app:iconTint="@color/white"
-            app:icon="@drawable/ic_baseline_image_24" />
+            app:icon="@drawable/ic_baseline_image_24"
+            app:iconTint="@color/white" />
 
     </RelativeLayout>
 
