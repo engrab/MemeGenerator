@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/drawable/ic_trend_inactive.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/seleted.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/trending_selector.xml" value="0.36615384615384616" />
+        <entry key="app/src/main/res/drawable/unselected.xml" value="0.1984375" />
         <entry key="app/src/main/res/font/roboto_medium.xml" value="0.38" />
         <entry key="app/src/main/res/layout/activity_edit_meme.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />

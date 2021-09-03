@@ -70,7 +70,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .apply {
                 setContentTitle(notificationTitle)
                 setContentText(notificationMessage)
-                setSmallIcon(R.drawable.ic_main)
+                setSmallIcon(R.mipmap.ic_launcher)
                 setAutoCancel(true)
                 setContentIntent(pendingIntent)
             }.build()

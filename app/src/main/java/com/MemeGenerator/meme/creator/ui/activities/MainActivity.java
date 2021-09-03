@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bannerAdsFacebook() {
 
-        mAdView = new AdView(this, "570681927643832_570682054310486", AdSize.BANNER_HEIGHT_50);
+        mAdView = new AdView(this, getString(R.string.ad_banner), AdSize.BANNER_HEIGHT_50);
 
         LinearLayout adContainer = findViewById(R.id.banner_container);
 

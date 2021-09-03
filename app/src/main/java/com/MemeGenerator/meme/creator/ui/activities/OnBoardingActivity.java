@@ -29,8 +29,8 @@ public class OnBoardingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(1);
-        getWindow().setFlags(1024, 1024);
+//        requestWindowFeature(1);
+//        getWindow().setFlags(1024, 1024);
         binding = ActivityOnboardingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         AudienceNetworkAds.initialize(this);
