@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -90,6 +92,8 @@ public class EditMemeActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: called");
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_edit_meme);
 
         textViewDescription = findViewById(R.id.textViewDescription);
@@ -162,7 +166,7 @@ public class EditMemeActivity extends BaseActivity implements
         mPhotoEditorView.getSource().setImageBitmap(bitmap);
     }
 
-    public void shapeDialoge(){
+    public void shapeDialoge() {
 
         AlertDialog alertDialog = new AlertDialog.Builder(EditMemeActivity.this).create();
         alertDialog.setTitle("Shape Tool");
@@ -183,7 +187,8 @@ public class EditMemeActivity extends BaseActivity implements
         SharedPrefs.putBoolean(this, KEY_SHAPE_DIALOGE, false);
 
     }
-    public void eraseDialoge(){
+
+    public void eraseDialoge() {
 
         AlertDialog alertDialog = new AlertDialog.Builder(EditMemeActivity.this).create();
         alertDialog.setTitle("Eraser Tool");
@@ -549,10 +554,9 @@ public class EditMemeActivity extends BaseActivity implements
 
     private void enableShapeEditing() {
 
-        if (SharedPrefs.getBoolean(this, KEY_SHAPE_DIALOGE, true)){
+        if (SharedPrefs.getBoolean(this, KEY_SHAPE_DIALOGE, true)) {
             shapeDialoge();
-        }
-        else {
+        } else {
 
             mPhotoEditor.setBrushDrawingMode(true);
             mShapeBuilder = new ShapeBuilder();
@@ -564,9 +568,9 @@ public class EditMemeActivity extends BaseActivity implements
     }
 
     private void enableEraserEditing() {
-        if (SharedPrefs.getBoolean(this, KEY_ERASE_DIALOGE, true)){
+        if (SharedPrefs.getBoolean(this, KEY_ERASE_DIALOGE, true)) {
             eraseDialoge();
-        }else {
+        } else {
 
             mPhotoEditor.brushEraser();
             mTxtCurrentTool.setText(R.string.label_eraser_mode);

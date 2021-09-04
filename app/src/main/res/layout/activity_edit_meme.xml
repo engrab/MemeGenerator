@@ -5,7 +5,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_dark"
+    android:background="@color/black"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ja.burhanrashid52.photoeditor.PhotoEditorView

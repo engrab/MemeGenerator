@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rateUs() {
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getApplication().getPackageName()));
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getApplicationContext().getPackageName()));
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         try {
             startActivity(intent);
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent("android.intent.action.SEND");
             intent.setType("text/plain");
             intent.putExtra("android.intent.extra.SUBJECT", getString(R.string.app_name));
-            intent.putExtra("android.intent.extra.TEXT", "\nLet me recommend you this application\nhttps://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+            intent.putExtra("android.intent.extra.TEXT", "\nLet me recommend you this application\nhttps://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
             startActivity(Intent.createChooser(intent, "choose one"));
         } catch (Exception unused) {
             unused.printStackTrace();
